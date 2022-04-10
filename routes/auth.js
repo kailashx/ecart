@@ -115,7 +115,7 @@ router.post('/logout', function(req, res, next) {
  * will be sent to the `POST /signup` route.
  */
 router.get('/signup', function(req, res, next) {
-  res.render('signup');
+  res.render('signup', { csrfToken: req.csrfToken() });
 });
 
 router.get('/seller-signup', function(req, res, next) {

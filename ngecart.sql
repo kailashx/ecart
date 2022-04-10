@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2022 at 10:41 AM
+-- Generation Time: Apr 10, 2022 at 04:45 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -92,6 +92,7 @@ CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
   `usertype` int(11) NOT NULL,
   `password` varchar(200) NOT NULL,
+  `salt` varchar(20) NOT NULL,
   `isverified` tinyint(1) NOT NULL,
   `ulock` tinyint(1) NOT NULL,
   `counter` int(11) NOT NULL
