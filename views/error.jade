@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= message
+  h2= error.status
+  pre #{error.stack}
+  h3 We are working to fix this soon. U.....
+  div(style='width:2%;height:0;padding-bottom:2%;position:relative;')
+  iframe.giphy-embed(src='https://giphy.com/embed/ipGbXExI0f9xJd5Rcu' width='50%' height='50%' style='position:absolute' frameborder='0' allowfullscreen='null')
+p
+  a(href='https://giphy.com/gifs/kikitech-kiki-kikiapp-kikicat-ipGbXExI0f9xJd5Rcu') via GIPHY
+  

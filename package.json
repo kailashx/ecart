@@ -1,0 +1,48 @@
+{
+  "name": "ecart",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Next-gen E-cart is a platform designed to promote local businesses, cutage industries and small shop, inspiring small business man to grow thier market reach.",
+  "keywords": [
+    "e-commerce",
+    "express",
+    "passport",
+    "sqlite",
+    "mysql"
+  ],
+  "contributors": [
+    "Kailasha Chandra Sahoo <chnadra97762@gmail.com> (https://kailasha-chandra.w3spaces.com/)",
+    "Bhanupriya Mishra <bhanupriya.mishra@gmail.com> (https://whatever.com)",
+    "Suchitinita Mishra <something@whatever.com> (https://whatever.com)",
+    "Lipsa <something@whatever.com> (https://whatever.com)"
+  ],
+  "homepage": "https://github.com/kailashx/ecart",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kailashx/ecart.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kailashx/ecart/issues"
+  },
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "connect-ensure-login": "^0.1.1",
+    "connect-sqlite3": "^0.9.13",
+    "cookie-parser": "~1.4.4",
+    "csurf": "^1.11.0",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "express-session": "^1.17.2",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.1",
+    "multer": "^1.4.4",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.15",
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0"
+  }
+}
