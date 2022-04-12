@@ -7,14 +7,14 @@
 //})
 //
 //module.exports = connection;
-
+//
 var sqlite3 = require('sqlite3');
 var mkdirp = require('mkdirp');
 var crypto = require('crypto');
 
 mkdirp.sync('var/db');
 
-var db = new sqlite3.Database('var/db/todos.db');
+var db = new sqlite3.Database('var/db/ngecart.db');
 
 db.serialize(function() {
   // create the database schema for the todos app
@@ -30,10 +30,10 @@ db.serialize(function() {
     completed INTEGER \
   )");
   
-  // create an initial user (username: alice, password: letmein)
+  // create an initial user (username: testuser@gmail.com, password: letmein)
   var salt = crypto.randomBytes(16);
   db.run('INSERT OR IGNORE INTO users (username, hashed_password, salt) VALUES (?, ?, ?)', [
-    'alice',
+    'testuser@gmail.com',
     crypto.pbkdf2Sync('letmein', salt, 310000, 32, 'sha256'),
     salt
   ]);
