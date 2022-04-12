@@ -2,7 +2,7 @@ var express = require('express');
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var crypto = require('crypto');
-var connection = require('../db');
+var db = require('../db');
 
 
 /* Configure password authentication strategy.
@@ -17,14 +17,14 @@ var connection = require('../db');
  * user is authenticated; otherwise, not.
  */
 passport.use(new LocalStrategy(function verify(username, password, cb) {
-  connection.connect();
-  connection.query('SELECT userid AS id, * FROM users WHERE username = ?', [ username ], function(err, row) {
+
+  db.run('SELECT userid AS id, * FROM users WHERE username = ?', [ username ], function(err, row) {
     if (err) { return cb(err); }
     if (!row) { return cb(null, false, { message: 'Incorrect username or password.' }); }
     
     crypto.pbkdf2(password, row.salt, 310000, 32, 'sha256', function(err, hashedPassword) {
       if (err) { return cb(err); }
-      if (!crypto.timingSafeEqual(row.password, hashedPassword)) {
+      if (!crypto.timingSafeEqual(row.hashed_password, hashedPassword)) {
         return cb(null, false, { message: 'Incorrect username or password.' });
       }
       return cb(null, row);
@@ -115,7 +115,7 @@ router.post('/logout', function(req, res, next) {
  * will be sent to the `POST /signup` route.
  */
 router.get('/signup', function(req, res, next) {
-  res.render('signup', { csrfToken: req.csrfToken() });
+  res.render('signup', { csrfToken: res.locals.csrfToken });
 });
 
 router.get('/seller-signup', function(req, res, next) {
@@ -132,19 +132,19 @@ router.get('/seller-signup', function(req, res, next) {
  * successfully created, the user is logged in.
  */
 router.post('/signup', function(req, res, next) {
-  connection.connect();
+
   var salt = crypto.randomBytes(16);
-  crypto.pbkdf2(req.body.password, salt, 310000, 32, 'sha256', function(err, hashedPassword) {
+  crypto.pbkdf2(req.body.pass, salt, 310000, 32, 'sha256', function(err, hashedPassword) {
     if (err) { return next(err); }
-    connection.query('INSERT INTO users (username, password, salt) VALUES (?, ?, ?)', [
-      req.body.username,
+    db.run('INSERT INTO users (username, password, salt) VALUES (?, ?, ?)', [
+      req.body.email,
       hashedPassword,
       salt
     ], function(err) {
       if (err) { return next(err); }
       var user = {
         id: this.lastID,
-        username: req.body.username
+        username: req.body.email
       };
       req.login(user, function(err) {
         if (err) { return next(err); }
@@ -152,15 +152,13 @@ router.post('/signup', function(req, res, next) {
       });
     });
   });
-  connection.end();
 });
 
 router.post('/seller-signup', function(req, res, next) {
-  connection.connect();
   var salt = crypto.randomBytes(16);
   crypto.pbkdf2(req.body.password, salt, 310000, 32, 'sha256', function(err, hashedPassword) {
     if (err) { return next(err); }
-    connection.query('INSERT INTO users (username, password, salt) VALUES (?, ?, ?)', [
+    db.run('INSERT INTO users (username, password, salt) VALUES (?, ?, ?)', [
       req.body.username,
       hashedPassword,
       salt
@@ -176,7 +174,6 @@ router.post('/seller-signup', function(req, res, next) {
       });
     });
   });
-  connection.end();
 });
 
 module.exports = router;
