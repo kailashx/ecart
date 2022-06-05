@@ -18,7 +18,7 @@ var authRouter = require('./routes/auth');
 //var usersRouter = require('./routes/users');
 //var loginRouter = require('./routes/login');
 //var signupRouter = require('./routes/signup');
-var sellerSingup = require('./routes/seller-signup');
+//var sellerSingup = require('./routes/seller-signup');
 
 
 var app = express();
