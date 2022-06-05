@@ -18,19 +18,20 @@ var db = require('../db');
  */
 passport.use(new LocalStrategy(function verify(username, password, cb) {
 
-  db.run('SELECT userid AS id, * FROM users WHERE username = ?', [ username ], function(err, row) {
+  db.get('SELECT rowid AS id, * FROM users WHERE username = ?', [ username ], function(err, row) {
+
     if (err) { return cb(err); }
-    if (!row) { return cb(null, false, { message: 'Incorrect username or password.' }); }
+    if (!row) { return cb(null, false, { message: 'Incorrect username or password this is ----.' }); }
     
     crypto.pbkdf2(password, row.salt, 310000, 32, 'sha256', function(err, hashedPassword) {
       if (err) { return cb(err); }
       if (!crypto.timingSafeEqual(row.hashed_password, hashedPassword)) {
-        return cb(null, false, { message: 'Incorrect username or password.' });
+        return cb(null, false, { message: 'Incorrect username or password######.' });
       }
       return cb(null, row);
     });
   });
-  connection.end();
+
 }));
 
 /* Configure session management.
@@ -92,7 +93,7 @@ router.get('/login', function(req, res, next) {
  * a message informing them of what went wrong.
  */
 router.post('/login/password', passport.authenticate('local', {
-  successReturnToOrRedirect: '/',
+  successReturnToOrRedirect: '/home',
   failureRedirect: '/login',
   failureMessage: true
 }));
@@ -134,17 +135,17 @@ router.get('/seller-signup', function(req, res, next) {
 router.post('/signup', function(req, res, next) {
 
   var salt = crypto.randomBytes(16);
-  crypto.pbkdf2(req.body.pass, salt, 310000, 32, 'sha256', function(err, hashedPassword) {
+  crypto.pbkdf2(req.body.password, salt, 310000, 32, 'sha256', function(err, hashedPassword) {
     if (err) { return next(err); }
-    db.run('INSERT INTO users (username, password, salt) VALUES (?, ?, ?)', [
-      req.body.email,
+    db.run('INSERT INTO users (username, hashed_password, salt) VALUES (?, ?, ?)', [
+      req.body.username,
       hashedPassword,
       salt
     ], function(err) {
       if (err) { return next(err); }
       var user = {
         id: this.lastID,
-        username: req.body.email
+        username: req.body.username
       };
       req.login(user, function(err) {
         if (err) { return next(err); }

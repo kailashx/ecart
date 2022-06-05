@@ -18,7 +18,7 @@ var authRouter = require('./routes/auth');
 //var usersRouter = require('./routes/users');
 //var loginRouter = require('./routes/login');
 //var signupRouter = require('./routes/signup');
-//var sellerSingup = require('./routes/seller-signup');
+var sellerSingup = require('./routes/seller-signup');
 
 
 var app = express();
@@ -26,6 +26,8 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.locals.pluralize = require('pluralize');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));

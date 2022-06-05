@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Next-Gen E-cart</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel = "icon" href = 
+"/images/icons/icons8-shopping-cart-promotion-16.png" 
+        type = "image/x-icon">
+<style>
+body,h1,h5 {font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+.bgimg {
+  background-image: url('images/img-02.webp');
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+/* Google Fonts */
+@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
+
+/* Global */
+/*html{
+  min-height: 100%;
+  overflow: hidden;
+}
+body{
+  height: calc(100vh - 8em);
+  padding: 4em;
+  color: rgba(255,255,255,.75);
+  font-family: 'Anonymous Pro', monospace;  
+  background-color: rgb(25,25,25);  
+}*/
+.line-1{
+    position: relative;
+    top: 50%;  
+    width: 24em;
+    margin: 0 auto;
+    border-right: 2px solid rgba(255, 255, 255, 0.75);
+    font-size: 180%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-50%);    
+}
+
+/* Animation */
+.anim-typewriter{
+  animation: typewriter 4s steps(40) 1s 1 normal both,
+             blinkTextCursor 500ms steps(40) infinite normal;
+}
+@keyframes typewriter{
+  from{width: 0;}
+  to{width: 8em;}
+}
+@keyframes blinkTextCursor{
+  from{border-right-color: rgba(20, 168, 6, 0.75);}
+  to{border-right-color: transparent;}
+}
+</style>
+</head>
+<body>
+
+<div class="bgimg w3-display-container w3-text-white">
+  <div class="w3-display-middle w3-jumbo">
+    <p class="line-1 anim-typewriter">next-Gen E-cart</p>
+  </div>
+  <div class="w3-display-topleft w3-container w3-xlarge">
+    <p><button onclick="document.getElementById('menu').style.display='block'" class="w3-button w3-black">about</button></p>
+    <p><button onclick="document.getElementById('contact').style.display='block'" class="w3-button w3-black">feedback</button></p>
+	  <p><button class="w3-button w3-black"><a href='/home' alt='Broken Link'>Browse as Guest</a></button></p>
+    <p><button class="w3-button w3-black"><a href='/login' alt='Broken Link'>Login</a></button></p>
+	  <p><button class="w3-button w3-black"><a href='/signup' alt='Broken Link'>Signup</a></button></p>
+  </div>
+  <div class="w3-display-bottomleft w3-container">
+    <p class="w3-xlarge">monday - friday 10-18 | saturday - sunday - weekend</p>
+    <p class="w3-large">silicon Hills, near DLF cybercity, Patia, Bhubaneswar, Odisha 751024</p>
+    <p>developed by <a href="#profile" target="_blank">Bhanupriya and it's team</a></p>
+    <p>Icons by <a target="_blank" href="https://icons8.com">Icons8</a></p>
+  </div>
+</div>
+
+<!-- Menu Modal -->
+<div id="menu" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom">
+    <div class="w3-container w3-black w3-display-container">
+      <span onclick="document.getElementById('menu').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+      <h1>A brief about us!</h1>
+    </div>
+    <div class="w3-container">
+      <p>
+        next-gen E-cart is a platform designed to promote local businesses, cutage industry and small shop, inspiring small business man
+        to grow thier market reach, that are left overlooked and unrecognised in the very computative gaint ecosystem of e-commerce
+        We are here to help and promote these organization and making them successful. We becomes their technical partner by opening 
+        an opertunity to reach a vast number of customer beyond local area and expanding their business.
+      </p>
+    </div>
+    <div class="w3-container w3-black">
+      <h1>Service Area</h1>
+    </div>
+    <div class="w3-container">
+      <h5>Bhubaneswar<b> 15 sub location</b></h5>
+      <h5>Boudh<b> 20 sub location</b></h5>
+      <h5>Balangir<b> 28 sub location</b></h5>
+      <h5>Nayagarh<b> 23 sub location</b></h5>
+      <h5>Cuttack<b> 12 sub location</b></h5>
+      <h5>Sonepur<b> 11 sub location</b></h5>
+    </div>
+    <div class="w3-container w3-black">
+      <h1>Partner Catagoris currently associated with us</h1>
+    </div>
+    <div class="w3-container">
+      <h5>Sambalpuri Sarees<b> 24 partner from Boudh, Sonepur, and Balangir</b></h5>
+      <h5>Organic Vegetables<b> 36 partner from Boudh, Sonepur, Balangir and Cuttack</b></h5>
+      <h5>Chandua<b> 6 partner from Boudh and Cuttack</b></h5>
+      <h5>Home made Clay pot and other home decorative clay materials<b>  3 partner from Balangir</b></h5>
+    </div>
+  </div>
+</div>
+
+<!-- Contact Modal -->
+<div id="contact" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom">
+    <div class="w3-container w3-black">
+      <span onclick="document.getElementById('contact').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+      <h1>feedback form</h1>
+    </div>
+    <div class="w3-container">
+      <p>We are greatly welcoming for any suggestion and feedback. We will be very much please to respond your queries and suggestions.</p>
+      <form action="#/feedback" target="_blank">
+        <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="Name"></p>
+        <p><input class="w3-input w3-padding-16 w3-border" type="number" placeholder="Contact" required name="People"></p>
+        <p><input class="w3-input w3-padding-16 w3-border" type="datetime-local" placeholder="Date and time" required name="date" value="2020-11-16T20:00"></p>
+        <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Queries \ Suggestion" required name="Message"></p>
+        <p><button class="w3-button" type="submit">SEND MESSAGE</button></p>
+      </form>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+

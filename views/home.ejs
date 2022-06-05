@@ -37,15 +37,18 @@
       </li>
     </ul>
   </div>
-  <form class="form-inline" action="/logout">
+  <form class="form-inline" action="/setting" method="post">
     <button class="btn btn-light" type="submit"><img src="images/icons8-setting-30.png" alt="setting"></button>
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
   </form>
-  <form class="form-inline" action="#/search">
+  <form class="form-inline" action="#/search" method="post">
     <input class="form-control mr-sm-2" type="text" placeholder="Search">
     <button class="btn btn-light" type="submit"><img src="images/icons8-search-30.png" alt="search"></button>
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
   </form>
-  <form class="form-inline" action="/logout">
+  <form class="form-inline" action="/logout" method="post">
     <button class="btn btn-light" type="submit"><img src="images/icons8-sign-out-50.png" alt="logout"></button>
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
   </form>
 </nav>
 
