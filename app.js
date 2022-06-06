@@ -7,6 +7,7 @@ var csrf = require('csurf');
 var passport = require('passport');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+var flash = require('express-flash');
 
 
 // pass the session to the connect sqlite3 module
@@ -15,6 +16,7 @@ var SQLiteStore = require('connect-sqlite3')(session);
 
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
+var homeRouter = require('./routes/home');
 //var usersRouter = require('./routes/users');
 //var loginRouter = require('./routes/login');
 //var signupRouter = require('./routes/signup');
@@ -56,8 +58,11 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.use(flash());
+
 app.use('/', indexRouter);
 app.use('/', authRouter);
+app.use('/', homeRouter);
 //app.use('/users', usersRouter);
 //app.use('/login', loginRouter);
 //app.use('/signup', signupRouter);
