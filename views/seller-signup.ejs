@@ -13,7 +13,7 @@
 	<body>
 		<section class="prompt">
 			<h3><img src="/images/icons/icons8-shopping-cart-promotion-16.png" alt="Next-Gen E-cart"></h3>
-			<h1>Sign up</h1>
+			<h1>Seller sign up</h1>
 			<form action="/signup" method="post">
 				<section>
 					<label for="username">Username</label>
@@ -23,11 +23,22 @@
 					<label for="new-password">Password</label>
 					<input id="new-password" name="password" type="password" autocomplete="new-password" required>
 				</section>
+				<section>
+					<label for="address">Address</label>
+					<input id="address" name="address" type="text" autocomplete="address" required>
+				</section>
+				<section>
+					<label for="mobile">Mobile</label>
+					<input id="mobile" name="mobile" type="text" autocomplete="mobile" required>
+				</section>
+				<section>
+					<label for="gstin">GSTIN</label>
+					<input id="gstin" name="gstin" type="text" autocomplete="gstin" required>
+				</section>
 				<input type="hidden" name="_csrf" value="<%= csrfToken %>">
 				<button type="submit">Sign up</button>
 			</form>
 			<hr>
-			<p class="help">For seller account? <a href="/seller-signup">Seller sign up</a></p>
 			<p class="help">Already have an account? <a href="/login">Sign in</a></p>
 			<p class="help">Oh! you dont need an account <a href="/">Go back</a></p>
 		</section>

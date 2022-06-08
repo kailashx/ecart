@@ -159,10 +159,13 @@ router.post('/seller-signup', function(req, res, next) {
   var salt = crypto.randomBytes(16);
   crypto.pbkdf2(req.body.password, salt, 310000, 32, 'sha256', function(err, hashedPassword) {
     if (err) { return next(err); }
-    db.run('INSERT INTO users (username, password, salt) VALUES (?, ?, ?)', [
+    db.run('INSERT INTO users (username, password, salt) VALUES (?, ?, ?, ?, ?, ?)', [
       req.body.username,
       hashedPassword,
-      salt
+      salt,
+      address,
+      mobile,
+      gstin
     ], function(err) {
       if (err) { return next(err); }
       var user = {
